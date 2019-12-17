@@ -1,0 +1,259 @@
+{% extends 'voters/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+    <title>E-Voting Home</title>
+
+    {% if not user.is_authenticated %}
+        <style>
+            #nav_bar_div {
+                top: -69px;
+            }
+            #menu_bar_display_open {
+                left: -1.2%;
+            }
+        </style>
+    {% endif %}
+
+{% endblock head %}
+
+{% block body %}
+
+    {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+                        border: 1px solid #008B8B; border-radius: 4px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+    {%  if user.is_authenticated  %}
+        <div class="container mt-5" style="padding: 2%; margin-bottom: 10%">
+            <br>
+            <br>
+            <table class="table table-dark">
+                <tr>
+                    <th  colspan="6">Ongoing Election</th>
+                </tr>
+                <tr>
+                    <th>Election ID</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Link</th>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == '1'  %}
+                        <tr>
+                            <td>{{ election.election_id }}</td>
+                            <td>{{ election.election_year }}</td>
+                            <td>{{ election.election_type }}</td>
+                            <td>{{ election.date_of_start }}</td>
+                            <td>{{ election.date_of_end }}</td>
+                            <td><a href="{% url 'trail.election' election.election_id %}">Voting Page</a></td>
+                        </tr>
+                    {%  endif  %}
+                {%  endfor  %}
+            </table>
+            <br>
+            <table class="table table-dark">
+                <tr>
+                    <th colspan="6">Upcoming Election</th>
+                </tr>
+                <tr>
+                    <th>Election ID</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Link</th>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == '0'  %}
+                        <tr>
+                            <td>{{ election.election_id }}</td>
+                            <td>{{ election.election_year }}</td>
+                            <td>{{ election.election_type }}</td>
+                            <td>{{ election.date_of_start }}</td>
+                            <td>{{ election.date_of_end }}</td>
+                            <td><a href="{% url 'trail.election' election.election_id %}">Candidate List</a></td>
+                        </tr>
+                    {%  endif  %}
+                {%  endfor  %}
+            </table>
+            <br>
+            <table class="table table-dark">
+                <tr>
+                    <th colspan="6">Past Election</th>
+                </tr>
+                <tr>
+                    <th>Election ID</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Link</th>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == '2'  %}
+                        <tr>
+                            <td>{{ election.election_id }}</td>
+                            <td>{{ election.election_year }}</td>
+                            <td>{{ election.election_type }}</td>
+                            <td>{{ election.date_of_start }}</td>
+                            <td>{{ election.date_of_end }}</td>
+                            <td><a href="{% url 'resultpage' election.election_id %}">Result</a></td>
+                        </tr>
+                    {%  endif  %}
+                {%  endfor  %}
+            </table>
+        </div>
+    {% else %}
+
+        <div class="container-fluid" id="landing">
+            <div class="row">
+                <div class="col" style="height: 420px; text-align: center;">
+                    <img src="{% static 'home/imgs/landing_page.png' %}" class="mt-5" style="width: 43%">
+                </div>
+            </div>
+            <div class="row mt-2" style="text-align: center">
+                <div class="col-sm">
+                    <span id="evoting-heading">E-VOTING</span>
+                </div>
+            </div>
+            <div class="row" id="loading_row">
+                <div class="col-sm-12">
+                    <div class="row" id="loading_home"></div>
+                    <section id="scrolldown" class="demo">
+                        <a href="#login_container"><span></span><span></span><span></span></a>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'evoting-register' %}" id="register">
+            <button type="button" class="btn btn-outline-success"><span>Register</span></button>
+        </a>
+
+        <div class="container-fluid border_t_b" id="login_container"
+            style="background-image: url('{% static 'home/imgs/hands.png' %}')">
+            <div class="row" style="padding: 9%;">
+                <div class="col-xl" id="organiser_div" onmouseover="expand_organiser()" onmouseout="contract_organiser()"
+                     style="padding: 5%; border: 2px solid mintcream; display: block;">
+                    <div id="organiser_link_align">
+                        <i class="material-icons md-200" id="org_icn"
+                           style="border-radius: 8px; text-shadow: 4px 4px 10px black;">
+                            people_outline
+                        </i>
+                        <h1 id="organiser" style="font-family: Calibri; font-weight: bolder;position: relative; color: #a6d5ec">
+                            ORGANISER
+                        </h1>
+                        <a href="{% url 'evoting-organiser-login' %}" id="organiser_link"
+                           style="text-decoration: none; position: relative">
+                            <h1 id="org_lnk" style="font-family: Calibri; font-weight: bolder; color: whitesmoke">
+                                ORGANISER LOGIN
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="organisers_description" id="org_desc">
+                        <p>Click organiser login to login if you are a organiser</p>
+                    </div>
+                </div>
+                <div class="col-xl" id="voter_div" onmouseover="expand_voter()" onmouseout="contract_voter()"
+                     style="padding: 5%; border: 2px solid mintcream; display: block;">
+                    <div id="voter_link_align">
+                        <i class="material-icons md-200" id="vtr_icn"
+                           style="  border-radius: 8px; text-shadow: 4px 4px 10px black;">
+                            people_outline
+                        </i>
+                        <h1 id="voter" style="font-family: Calibri; font-weight: bolder;position: relative; color: #a6d5ec">
+                            VOTER
+                        </h1>
+                        <a href="{% url 'evoting-voter-login' %}" id="voter_link"
+                           style="text-decoration: none; position: relative">
+                            <h1 id="vtr_lnk" style="font-family: Calibri; font-weight: bolder; color: #cccccc">
+                                VOTER LOGIN
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="voters_description" id="vtr_desc">
+                        <p>Click Voter login to login if you are a Voter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="iconboxes-section section" id="counter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="heading" id="details_heading">
+                            <h4><b>Details</b></h4>
+                        </div>
+                    </div><!-- col-sm-12 -->
+
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="iconbox margin-b-30">
+                            <i class="line-icon icon-rocket"></i>
+                            <h5 class="margin-tb-20 mb-4"><b style="border-bottom: 3px solid #4ca1af">VOTING ELIGIBILITY</b></h5>
+                            <p>As per the Indian Constitution, all Indian citizens above the age of 18 years
+                                who have registered themselves as voters are eligible to vote.
+                                These individuals can vote in national, state, district
+                                as well as local government body elections.</p>
+                        </div><!-- counter -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="iconbox margin-b-30">
+                            <i class="line-icon icon-cut"></i>
+                            <h5 class="margin-tb-20 mb-4"><b style="border-bottom: 3px solid #4ca1af">RIGHT TO VOTE</b></h5>
+                            <p>One of the most critical ways that individuals can influence governmental
+                                decision-making is through voting. Voting is a formal expression of preference
+                                for a candidate for office or for a proposed resolution of an issue. </p>
+                        </div><!-- counter -->
+                    </div><!-- col-md-4 -->
+
+                </div><!-- row -->
+            </div><!-- container -->
+        </section><!-- progression-section -->
+
+        <div class="container-fluid" style="height: 500px; background-color: rgba(0, 0, 0, 0.5); padding: 20px">
+            <div class="row">
+                <div class="col-xl" style="text-align: center">
+                    <p id="of-the-people">of the people</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl" style="text-align: center">
+                    <p id="of-the-people">for the people</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl" style="text-align: center">
+                    <p id="of-the-people">by the people</p>
+                </div>
+            </div>
+        </div>
+    {%  endif  %}
+
+    <!-- =====================================Js Functions============================= -->
+
+    {% if not user.is_authenticated %}
+        <script>
+            $(function() {
+                $('a[href*=#]').on('click', function(e) {
+                    e.preventDefault();
+                    $('html, body').animate({scrollTop: $($(this).attr('href')).offset().top - 65}, 5000, 'ease');
+                });
+            });
+        </script>
+    {% endif %}
+
+    <script src="{% static 'home/script/script.js' %}"></script>
+
+{% endblock body %}

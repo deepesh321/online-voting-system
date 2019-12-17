@@ -1,0 +1,126 @@
+{% extends 'graphs/maincharts.html' %}
+
+<script>
+{% block jquery %}
+
+data = {{ data|safe }};
+console.log(data);
+console.log("HI");
+for(var i=0;i<10;i++)
+{
+    value=data[i];
+    labels=value.labelsdata;
+    defaultData=value.defaultdata;
+    console.log(labels);
+    console.log(defaultData);
+    setChart(labels,defaultData,i);
+
+
+}
+
+function setChart(labels,defaultData,i){
+    var str = ("myChart"+i.toString());
+    console.log(str);
+    var ctx2 = document.getElementById(str);
+    console.log(ctx2);
+    var myChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Number of Votes',
+            data: defaultData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'darkred','darkblue','darkorange',
+                'darkmagneta','darkgoldenrod','deeppink',
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+}
+            // var ctx = document.getElementById("myChart");
+      {% endblock jquery %}
+    </script>
+{%  block content %}
+        <div style="height: 250px"></div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Andhra Pradesh</h2>
+            <canvas id="myChart0" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Bihar</h2>
+            <canvas id="myChart1" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Karnataka</h2>
+            <canvas id="myChart2" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Tamil Nadu</h2>
+            <canvas id="myChart3" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Kerela</h2>
+            <canvas id="myChart4" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Uttar Pradesh</h2>
+            <canvas id="myChart5" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">West Bengal</h2>
+            <canvas id="myChart6" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Madhya Pradesh</h2>
+            <canvas id="myChart7" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Haryana</h2>
+            <canvas id="myChart8" width="90" height="50"></canvas>
+        </div>
+        <div class="jumbotron" id="chart">
+            <h2 style="color:red;text-align:center">Assam</h2>
+            <canvas id="myChart9" width="90" height="50"></canvas>
+        </div>
+
+        <div style="height: 200px"></div>
+{% endblock content %}

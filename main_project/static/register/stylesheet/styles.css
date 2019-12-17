@@ -1,0 +1,273 @@
+
+/*----------------------------Animation Classes----------------------------*/
+.register_form {
+    -webkit-animation: animate_register_form;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_register_form;
+    animation-duration: 2s;
+}
+
+/*.fullname {
+    -webkit-animation: animate_fullname_box;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_fullname_box;
+    animation-duration: 2s;
+}
+
+.voterId {
+    -webkit-animation: animate_voterId_box;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_voterId_box;
+    animation-duration: 2s;
+}
+
+.username {
+    -webkit-animation: animate_username_box;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_username_box;
+    animation-duration: 2s;
+}
+
+.email {
+    -webkit-animation: animate_email_box;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_email_box;
+    animation-duration: 2s;
+}
+
+.password {
+    -webkit-animation: animate_password_box;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_password_box;
+    animation-duration: 2s;
+}*/
+/*----------------------------------------------------------------------------*/
+
+
+.registration_btn {
+    padding: 0;
+    background: transparent;
+    border-radius: 50%;
+    border: 1px solid skyblue;
+    outline: none;
+    -webkit-animation: animate_register_btn_outline;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_register_btn_outline;
+    animation-duration: 2s;
+}
+
+.reg_btn_div {
+    margin-top: 17%; padding-left: 25%;
+    max-width: 132px;
+    -webkit-animation: animate_register_btn;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_register_btn;
+    animation-duration: 2s;
+}
+
+.registration_btn_img {
+    max-width: 130px;
+    max-height: 130px;
+    padding: 30px;
+    outline: none;
+    background: transparent;
+    -webkit-animation: animate_register_btn_img;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_register_btn_img;
+    animation-duration: 2s;
+}
+
+.register_text {
+
+    text-align: center;
+    font-size: 35px;
+    color: aquamarine; font-family: "Segoe UI"; font-weight: bold;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    mso-border-shadow: yes;
+    -webkit-animation: animate_register_heading;
+    -webkit-animation-duration: 2s;
+    animation-name: animate_register_heading;
+    animation-duration: 2s;
+
+}
+
+
+.input_boxes {
+
+    background: transparent;
+    color: khaki;
+    font-size: 20px; font-weight: bold;
+    letter-spacing: 0.8px;
+    padding: 20px;
+    border-radius: 0;
+    border-top: none; border-right: none; border-left: none; border-bottom: 2px solid whitesmoke;
+    outline: none;
+
+}
+
+.date_box {
+
+    background: transparent;
+    color: khaki;
+    font-weight: bold;
+    border-top: none; border-right: none; border-left: none; border-bottom: 2px solid whitesmoke;
+    border-radius: 0;
+    outline: none;
+
+}
+
+
+/*=====================HOVERS=============================*/
+
+.register_text:hover {
+    user-select: none;
+}
+
+.registration_btn:hover {
+    cursor: pointer;
+    outline: none;
+    border: 1px solid deepskyblue;
+    transition-duration: 0.25s;
+    box-shadow: inset 0 0 10px 2px rgba(50, 50, 50, 0.7);
+}
+
+
+/*===================================================================================*/
+
+/*========================================WEBKIT ANIMATIONS====================================*/
+
+
+/*----------------------Register Heading Animation----*/
+@-webkit-keyframes animate_register_heading {
+    from {opacity: 0;letter-spacing: -2px;}
+    to {opacity: 1;letter-spacing: 1.5px;}
+}
+
+@keyframes animate_register_heading {
+    from {opacity: 0;letter-spacing: -2px;}
+    to {opacity: 1;letter-spacing: 1.5px;}
+}
+
+/*----------------------Fullname box animation---------*/
+/*
+@-webkit-keyframes animate_fullname_box {
+    from {margin-top: 50%; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+
+@keyframes animate_fullname_box {
+    from {margin-top: 50%; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+
+/*----------------------voterId box animation---------*/
+/*
+@-webkit-keyframes animate_voterId_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+
+@keyframes animate_voterId_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+*/
+
+/*----------------------Username box animation---------*/
+/*
+@-webkit-keyframes animate_username_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+
+@keyframes animate_username_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+*/
+
+/*----------------------Email box animation---------*/
+/*
+@-webkit-keyframes animate_email_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+
+@keyframes animate_email_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+*/
+
+/*----------------------Password box animation---------*/
+/*
+@-webkit-keyframes animate_password_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+
+@keyframes animate_password_box {
+    from {margin-top: 0; opacity: 0;}
+    to {margin-top: 12%; opacity: 1;}
+}
+*/
+
+@-webkit-keyframes animate_register_form {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes animate_register_form {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/*----------------------Register Button animation---------*/
+@-webkit-keyframes animate_register_btn {
+    0%{opacity: 0}
+    25%{opacity: 0; margin-right: 25%;}
+    50%{opacity: 0.5; margin-right: 12%}
+    75%{opacity: 0.75; margin-right: 22%}
+    100%{opacity: 1; margin-right: 21%}
+}
+
+@keyframes animate_register_btn {
+    0%{opacity: 0}
+    25%{opacity: 0; margin-right: 25%;}
+    50%{opacity: 0.5; margin-right: 12%}
+    75%{opacity: 0.75; margin-right: 22%}
+    100%{opacity: 1; margin-right: 21%}
+}
+
+@-webkit-keyframes animate_register_btn_outline {
+    0%{}
+    25%{height: 60px; width: 150px}
+    50%{height: 150px; width: 60px}
+    75%{height: 120px; width: 140px}
+    100%{height: 132px; width: 132px}
+}
+
+@keyframes animate_register_btn_outline {
+    0%{}
+    25%{height: 60px; width: 150px}
+    50%{height: 150px; width: 60px}
+    75%{height: 120px; width: 140px}
+    100%{height: 132px; width: 132px}
+}
+
+@-webkit-keyframes animate_register_btn_img {
+    0%{}
+    25%{height: 70px; width: 150px}
+    50%{height: 150px; width: 70px}
+    75%{height: 120px; width: 140px}
+    100%{height: 132px; width: 132px}
+}
+
+@keyframes animate_register_btn_img {
+    0%{}
+    25%{height: 70px; width: 150px}
+    50%{height: 150px; width: 70px}
+    75%{height: 120px; width: 140px}
+    100%{height: 132px; width: 132px}
+}

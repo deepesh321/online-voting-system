@@ -1,0 +1,16 @@
+.send_mail_btn {
+    position: relative;
+    background: transparent;
+    border: 1px solid white;
+    color: deepskyblue;
+    border-radius: 5px;
+    height: 28px;
+}
+
+.send_mail_btn:hover {
+    cursor: pointer;
+    background-color: deepskyblue;
+    color: white;
+    border: none;
+    height: 28px;
+}

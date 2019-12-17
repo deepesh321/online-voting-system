@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html>
+  <head>
+    <title>
+      Django 2
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% include 'base/css.html' %}
+    {% include 'base/bootstrap_defaults.html' %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'graphs\css1\style.css' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body background="{% static 'graphs/images/black.jpg' %}">
+      <section id="page-header">
+        <img id="logo" src="{% static 'graphs/images/evote.jpg' %}">
+        <h1 id="heading">IIITS Online Voting Commision</h1>
+      </section>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li class="active"><a href="#chart">Voting Results</a></li>
+              <li><a href="#">My Profile</a></li>
+              <li><a href="#">Candidates Profile</a></li>
+              <li><a href="#">Party Profile</a></li>
+              <li><a href="{% url 'charts:feedback'%}">Feedback form</a></li>
+              <li><a href="{% url 'charts:report'%}">Report Problem</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+      </nav>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="{% static 'graphs/images/vote1.jpg/' %}" alt="Voting1" width="100%" height="50%">
+            </div>
+
+    </div><br>
+    {% include 'base/js.html' %}
+    <div class='container'>
+    {% block content %}
+    {% endblock content %}
+    </div>
+    <script>
+    $(document).ready(function(){
+      {% block jquery %}{% endblock jquery %}
+    })
+    </script>
+    <div class="contact">
+           <center>
+               <br><div style="color:white;font-size:20px;font-family: 'Britannic Bold'">For any queries You can contact us to the number<br><span class="glyphicon glyphicon-phone-alt"></span>+321654987,<span class="glyphicon glyphicon-earphone"></span>91201054548</div>
+           </center>
+           <center><a href="#"><img src="{% static 'graphs/images/twitter-logo-sketch.jpg' %}" style="height:50px;width:50px"></a>
+           <a href="#"> <img src="{% static 'graphs/images/fb.jpg' %}" style="height:50px;width:50px"></a>
+           <a href="#"><img src="{% static 'graphs/images/insta.jpg' %}" style="height:50px;width:50px"></a>
+           <br><br><p><a href="#"><img src="{% static 'graphs/images/location.png' %}" style="height:50px;width:50px"></a><br>
+           <div style="font-family: 'Britannic Bold';font-size:15px;color:red">Address:</div><span style="color:white">2town road,sricity</span></p>
+           </center>
+       </div>
+      </div>
+  </body>
+</html>

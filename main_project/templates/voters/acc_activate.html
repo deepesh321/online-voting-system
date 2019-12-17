@@ -1,0 +1,32 @@
+{% extends 'voters/base.html' %}
+
+{% block head %}
+
+    <title>E-Voting Account Activation</title>
+    <style>
+        input:placeholder-shown {
+            color: white;
+            font-size: 20px;
+        }
+
+        ::placeholder {
+            color: bisque;
+            opacity: 0.8;
+        }
+    </style>
+
+{% endblock head %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <h4 style="color: red; text-align: center">Please Activate your account. Or else you cannot access your account!!</h4>
+        <form>
+            <input type="email" placeholder="Email" style="background: transparent;
+                border-bottom: 1px solid white; border-left: none;
+                border-right: none; border-top: none; outline: none; padding: 10px" class="col mt-5" required>
+            <button style="background: transparent; border-radius: 5px; cursor: pointer; color: white; outline: none" class="col mt-5">Activate</button>
+        </form>
+    </div>
+
+{% endblock body %}

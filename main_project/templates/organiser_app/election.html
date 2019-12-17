@@ -1,0 +1,102 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+      <style>
+         a:hover {
+         background:#263238;
+         }
+         table {
+         border-collapse: collapse;
+         border-radius: 1em;
+         overflow: hidden;
+         }
+      </style>
+      <title>organiser_region</title>
+   </head>
+
+
+   <body style="position: relative; padding-top: 20px;">
+      <nav class="navbar fixed-top container-fluid navbar-expand-lg navbar-light bg-dark">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <img src="{% static "images/e-voting.png"%}" alt="evoting image" width="50" height="50">
+            <p style="color:white; font-size:30px;margin:5px"><a style="color:white;text-decoration: none" href="{% url 'evoting-home' %}" >E-Voting </a></p>
+         </div>
+         <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item active">
+               <a class="nav-link text-white" href="{% url 'organiser_app:addelection' %}" style="font-size:26px">Add Election <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+               <p class="text-white " style="font-size:26px;margin:5px">|</p>
+            </li>
+            <li class="nav-item active">
+               <a class="nav-link text-white" href="{% url 'organiser_app:evoting-logout'%}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
+            </li>
+         </ul>
+      </nav>
+
+
+      <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin-top:50px" id="elections">
+
+         <input class="search float-right" style="border-radius:20px;padding:5px;margin-bottom:10px;border:2px solid black;outline:none;"placeholder="Enter Election Id" />
+         <table class="table table-dark " style="margin: 20px auto;">
+            <thead class="thead thead-light " style="text-align: center">
+               <th class="eid"> Election Id</th>
+               <th class="type"> Election Type</th>
+               <th > Election Year</th>
+               <th> Election DoS</th>
+               <th> Election DoE</th>
+               <th class="status"> Election Status</th>
+               <th>Region</th>
+               <th> Info </th>
+               <th>Update</th>
+            </thead>
+            <tbody class="list">
+               {% for i,j in election_region %}
+               <tr style="text-align: center">
+                  <td class="eid">{{ i.election_id}}</td>
+                  <td class="type">{{ i.election_type}}</td>
+                  <td >{{ i.election_year}}</td>
+                  <td>{{ i.date_of_start}}</td>
+                  <td>{{ i.date_of_end}}</td>
+                  <td class="status">{{ i.status}}</td>
+                    <td> {{j}}</td>
+                  <td><a href="{% url "organiser_app:election-candidate" i.election_id %}" >Click</a></td>
+                  <td><a href="{% url "organiser_app:election_edit" i.election_id %}" >Click</a></td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+
+      </div>
+
+
+      <!-- Optional JavaScript -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="{% static 'javascript/list.min.js' %}" ></script>
+
+      <script>
+         var options = {
+           valueNames: ['eid','type','status']
+         };
+
+         var musiclibraryList = new List('elections', options);
+      </script>
+
+
+   </body>
+</html>

@@ -1,0 +1,90 @@
+{% extends 'voters/base.html' %}
+{% load crispy_forms_tags  %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>E-Voting Register</title>
+
+    <style>
+        @media (min-width: 700px) {
+            .container {
+                max-width: 90%;
+            }
+        }
+    </style>
+
+{% endblock head %}
+{% block body %}
+    <div style="margin-bottom: 10%" class="container-fluid registration_table mt-7">
+        <form method="post">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="text-align: center; color:whitesmoke; font-weight: bold;
+                    border: 1px solid red; border-radius: 4px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="col register_text" style="display: block" id="reg">
+                    REGISTER
+                </div>
+            </div>
+            <div class="row">
+                <div class="col ml-5 register_form" style="color: white; max-width: 430px;" id="reg_table">
+                    <div class="mt-4 fullname">
+                        {{ reg_form2.fullname|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 voterId">
+                        {{ reg_form2.voterId|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 username">
+                        {{ reg_form1.username|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 email">
+                        {{ reg_form1.email|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 password">
+                        {{ reg_form1.password|as_crispy_field }}
+                    </div>
+                    <div class="" style="position: relative; margin-top: 10%">
+                        <label style="position: relative; margin-right: 10px; font-weight: bold; font-size: 20px">
+                            Date of Birth
+                        </label>
+                        <span style="position: relative; margin-left: 10%;">{{ reg_form2.voter_dob }}</span>
+                    </div>
+
+                </div>
+                <div class="col reg_btn_div">
+                    <button type="submit" class="registration_btn" id="reg_btn">
+                        <img class="registration_btn_img" src="{% static 'register/imgs/next.png' %}">
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-5" style="text-align: center; border-top: 1px solid #80bdff;">
+            <div class="col-sm-12">
+                <p class="mt-4" style="color: whitesmoke">
+                    If you are already registered, plase click any of the below link to continue
+                </p>
+            </div>
+            <div class="col-sm">
+                <a href="{% url 'evoting-voter-login' %}">
+                    <button type="button" class="btn btn-outline-primary">Voter Login</button>
+                </a>
+                <a href="{% url 'evoting-organiser-login' %}">
+                    <button type="button" class="btn btn-outline-secondary">Organiser Login</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+
+<!--
+    <button type="submit" class="registration_btn" id="reg_btn" onclick="animate_register_table_in()">
+        <img class="registration_btn_img" src="{% static 'register/imgs/next.png' %}">
+    </button>
+
+-->

@@ -1,0 +1,172 @@
+{% extends 'voters/profile_base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block body %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+<!-- =================================================== -->
+<div style="background-color: white">
+	<header>
+		<div class="container">
+			<div class="heading-wrapper" id="heading-wrapper">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 col-lg-4">
+						<div class="info">
+							<i class="icon ion-ios-location-outline"></i>
+							<div class="right-area">
+								<h5>India</h5>
+								<h5>{{ user_region }}</h5>
+							</div><!-- right-area -->
+						</div><!-- info -->
+					</div><!-- col-sm-4 -->
+					
+					<div class="col-sm-6 col-md-6 col-lg-4">
+						<div class="info">
+							<i class="icon ion-ios-telephone-outline"></i>
+							<div class="right-area">
+                                <h6>IN +91</h6>
+								<h5>{{ Voter.voter_phone }}</h5>
+							</div><!-- right-area -->
+						</div><!-- info -->
+					</div><!-- col-sm-4 -->
+					
+					<div class="col-sm-6 col-md-6 col-lg-4">
+						<div class="info">
+							<i class="icon ion-ios-chatboxes-outline"></i>
+							<div class="right-area">
+								<h5>{{ Voter.voter_email }}</h5>
+								<h6>Voter <i class="fa fa-check"></i></h6>
+							</div><!-- right-area -->
+						</div><!-- info -->
+					</div><!-- col-sm-4 -->
+				</div><!-- row -->
+			</div><!-- heading-wrapper -->
+
+		</div><!-- container -->
+	</header>
+	
+	<section class="intro-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1 col-lg-2"></div>
+				<div class="col-md-10 col-lg-8">
+					<div class="intro">
+						<div class="profile-img">
+                            {% if Voter.voter_gender == 'M' %}
+                                <img src="images/profile-1-250x250.jpg" alt="Hello" id="profile-pic"
+                                                  onerror="this.src='{% static 'profile/images/add_profile_pic.png' %}'">
+                            {% else %}
+                                {% if Voter.voter_gender == 'F' %}
+                                    <img src="images/profile-1-250x250.jpg" alt="Hello" id="profile-pic"
+                                                      onerror="this.src='{% static 'profile/images/girl.png' %}'">
+                                {% else %}
+                                    <img src="images/profile-1-250x250.jpg" alt="Hello" id="profile-pic">
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <form method="post" action="{% url 'edit-username'%}">
+                            {% csrf_token %}
+                            <h2>
+                                <b id="username_text">{{ Voters_Profile.user }}</b>
+                                <input type="text" id="username_input" name="new-username" value="{{ Voters_Profile.user }}" required>
+                                <i id="username_edit" class="fa fa-pencil" aria-hidden="true"
+                                   onclick="edit_username('{{ Voters_Profile.user }}')">
+                                </i>
+                                <button type="submit" id="username_edit_confirm">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                                <i id="username_edit_cancel" class="fa fa-close" aria-hidden="true" onclick="cancel_editing_username()"></i>
+                            </h2>
+                        </form>
+                        <h4 class="font-green">{{ Voters_Profile.fullname }}</h4>
+						<ul class="information margin-tb-30">
+							<li><b>Date of Birth : </b>{{ Voter.voter_dob }}</li>
+							<li><b>Email : </b>{{ Voter.voter_email }}</li>
+                            <li><b>Region : </b>{{ user_region }}</li>
+                            <li><b>Phn.No : </b>+91 {{ Voter.voter_phone }}</li>
+                            <li><b>Gender : </b>
+                                {% if Voter.voter_gender == 'M' %}
+                                    Male
+                                {% else %}
+                                    {% if Voter.voter_gender == 'F' %}
+                                        Female
+                                    {% else %}
+                                        Others
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+						</ul>
+					</div><!-- intro -->
+				</div><!-- col-sm-8 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section><!-- intro-section -->
+</div>
+
+    <section class="iconboxes-section section" id="counter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="heading">
+                        <h4><b style="color: whitesmoke">Details</b></h4>
+                    </div>
+                </div><!-- col-sm-12 -->
+				
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="iconbox margin-b-30">
+                        <i class="line-icon icon-rocket"></i>
+                        <h5 class="margin-tb-20"><b style="color: whitesmoke">VOTING</b></h5>
+                        <p>Voting is a method for a group, such as a meeting or an electorate,
+                            to make a collective decision or express an opinion, usually following discussions,
+                            debates or election campaigns. </p>
+                    </div><!-- counter -->
+                </div><!-- col-md-4 -->
+				
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="iconbox margin-b-30">
+                        <i class="line-icon icon-cut"></i>
+                        <h5 class="margin-tb-20"><b style="color: whitesmoke">VOTE</b></h5>
+                        <p> Democracies elect holders of high office by voting.
+                            Residents of a place represented by an elected official are called "constituents",
+                            There are different systems for collecting votes.</p>
+                    </div><!-- counter -->
+                </div><!-- col-md-4 -->
+				
+            </div><!-- row -->
+        </div><!-- container -->
+    </section><!-- progression-section -->
+
+
+{% endblock body %}
+
+<script>
+    function fadeout_alert_msg() {
+        $('.alert').css({display: 'none'});
+    }
+
+    {% if messages %}
+
+        setTimeout(500, fadeout_alert_msg());
+
+    {% endif %}
+
+</script>

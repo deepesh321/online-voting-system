@@ -1,0 +1,177 @@
+.organisers_description {
+    font-family: Bahnschrift;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    font-weight: bold;
+    font-size: 30px;
+    color: coral;
+    padding: 5%;
+    display: none;
+}
+
+.voters_description {
+    font-family: Bahnschrift;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    font-weight: bold;
+    font-size: 30px;
+    color: coral;
+    padding: 5%;
+    display: none;
+}
+
+#organiser_div:hover #organiser_link {
+    margin-top: 2%;
+}
+
+#voter_div:hover #voter_link {
+    letter-spacing: 1px;
+    word-spacing: 5px;
+}
+
+/*=================================================================================*/
+
+#of-the-people { font-family: Brush Script MT, Brush Script Std, cursive; font-size: 100px; color: #d6ae7b; }
+
+#organiser_link {
+    display: none;
+}
+
+#voter_link {
+    display: none;
+}
+
+#login_container {
+    text-align: center;
+    display: block;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+#loading_row {
+    max-width: 40%;
+    background-color: #FFED85;
+    position: relative;
+    left: 31.5%;
+    transition: all 1s ease;
+}
+
+#loading_home {
+    height: 5px;
+    display: block;
+    width: 5%;
+    background-image: linear-gradient(to right, #f88b2a, #d3dbf8, #5efd27);
+}
+
+#landing {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 1);
+    transition: all 5s ease;
+}
+
+#org_icn { color: #FFED85 }
+
+#vtr_icn { color: #d6ae7b }
+
+#org_lnk:hover { color: #4CAF50; }
+
+#counter {
+    background-image: linear-gradient(to bottom right, #4ca1af, #c4e0e5);
+}
+
+.section{ padding: 20px 0 120px; }
+
+.section .heading{
+    margin-bottom: 70px;
+    margin-top: 70px;
+}
+
+.section .heading:after{
+    content:'';
+    height: 5px;
+    width: 50px;
+    border-radius: 5px;
+	margin-bottom: 20px;
+    display: block;
+    background: #FFA804;
+    transition: all .5s ease-in;
+}
+
+/*-----------------------------------scroll down button----------------------------*/
+
+#scrolldown {
+    display: none;
+}
+
+#scrolldown a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: scrolldown_btn_animation 2s infinite;
+  animation: scrolldown_btn_animation 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+#scrolldown a span:nth-of-type(1) {
+    border-left: 1px solid #f88b2a;
+    border-bottom: 1px solid #f88b2a;
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+#scrolldown a span:nth-of-type(2) {
+  top: 16px;
+    border-left: 1px solid #d3dbf8;
+    border-bottom: 1px solid #d3dbf8;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#scrolldown a span:nth-of-type(3) {
+  top: 32px;
+    border-left: 1px solid #5efd27;
+    border-bottom: 1px solid #5efd27;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+#register {
+    position: absolute; top: 40px; right: 50px; z-index: 3; transition: all 0.5s ease-in;
+    -webkit-animation: animate_register_btn;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: animate_register_btn;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+#register span { padding-left: 20px; padding-right: 20px }
+
+@-webkit-keyframes scrolldown_btn_animation {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes scrolldown_btn_animation {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-webkit-keyframes animate_register_btn {
+  0% { top: 35px; }
+  50% { top: 45px; }
+  100% { top: 35px; }
+}
+@keyframes animate_register_btn {
+  0% { top: 35px; }
+  50% { top: 45px; }
+  100% { top: 35px; }
+}

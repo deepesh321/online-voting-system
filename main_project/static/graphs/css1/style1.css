@@ -1,0 +1,96 @@
+h1{
+  color : darkred;
+}
+.djangotwo{
+  border : 2px solid black;
+    align : center;
+}
+img {
+    border: 1px solid black;
+    border-radius: 4px;
+    height : 500 px;
+    width : 500px;
+    padding: 5px;
+    float :center;
+}
+.c2{color:red;float:right;}
+#c1{text-align:right;color:black;}
+.t1{border:1px;text-align:left;color:blue;border-collapse:collapse;float:left;}
+#s1{background-color:#FFC30F;height:125px;}
+#f1{float: right;color: solid black;}
+.button {
+				background-color: #4CAF50; /* Green */
+				border: none;
+				color: white;
+				padding: 16px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				float:left;
+				margin: 4px 2px;
+				-webkit-transition-duration: 0.4s; /* Safari */
+				transition-duration: 0.4s;
+				cursor: pointer;
+			}
+
+			.button1 {
+				background-color: white;
+				color: #4CAF50;
+				width:200px;
+				border: 2px solid #4CAF50;
+			}
+
+			.button1:hover {
+				background-color: #4CAF50;
+				color: white;
+			}
+
+			.button2 {
+				background-color: white;
+				color: #008CBA;
+				width:200px;
+				border: 2px solid #008CBA;
+			}
+
+			.button2:hover {
+				background-color: #008CBA;
+				color: white;
+			}
+
+			.button3 {
+				background-color: white;
+				color: #f44336;
+				width:200px;
+				border: 2px solid #f44336;
+			}
+
+			.button3:hover {
+				background-color: #f44336;
+				color: white;
+			}
+
+			.button4 {
+				background-color: white;
+				color: orange;
+				width:200px;
+				border: 2px solid orange;
+			}
+
+			.button4:hover {
+			    background-color: orange;
+			    color: white;
+			}
+
+			.button5 {
+				background-color: white;
+				color: #555555;
+				width:200px;
+				border: 2px solid #555555;
+			}
+
+			.button5:hover {
+				background-color: #555555;
+				color: white;
+			}
+

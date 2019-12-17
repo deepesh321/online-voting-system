@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://assistant.corover.mobi/irctc/chatbot.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags -->
+    
+    <title>CoRover: ChatBot as a Service (CaaS)™</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="./easy-autocomplete.min.css">
+    <link rel="stylesheet" href="./cb-style.css">
+
+    <title>IRCTC ChatBot - Powered by Corover</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="./analytics.js"></script><script async="" src="./js"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122267849-1');
+    </script>
+
+    <!-- google ads -->
+    <script async="async" src="./gpt.js"></script>
+    <script>
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+    </script>
+     
+    <script>
+      googletag.cmd.push(function() {
+        googletag.defineSlot('/21748009408/AskDisha_IP_300x250', [300, 250], 'div-gpt-ad-1540035329495-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+      });
+    </script>
+    <style>
+      
+    </style>
+
+  <link rel="preload" href="./f(4).txt" as="script"><script type="text/javascript" src="./f(4).txt"></script><link rel="preload" href="./f(5).txt" as="script"><script type="text/javascript" src="./f(5).txt"></script><script src="./pubads_impl_285.js" async=""></script></head>
+  <body id="pagebody" class="landingPage"> 
+    <div id="loadingGif" class="loadingGif"></div> 
+    <div class="wrapper">
+            <div id="cb-header">
+                    <div class="container">
+                        <div class="hd-col-a">
+                            <img alt="IRCTC Logo" src="./logo.png" height="40px" style="margin:14px 0 0 5px;">
+                        </div>
+                        <div class="hd-col-b">
+                            <a class="hidebot logo_chatbot">Ask DISHA<p style="padding: 0.5px;">Digital Interaction to Seek Help Anytime</p></a>
+                        </div>
+                        <div class="hd-col-c">
+                            <img alt="Disha" title="DISHA" src="./dishalogo.png" height="50px">
+                        </div> 
+                        <div class="clearfix"><!--clearfix--></div>
+                    </div>
+            
+                    <form class="form-inline" id="chatform">
+                            <div class="form-group queryinputwrap">
+                                <div class="input-group">
+                                    <div class="form-group has-feedback has-clear">
+                                        <input type="text" class="form-control" id="queryInput2" placeholder="How to cancel e-Ticket" autocomplete="off"><ul class="typeahead dropdown-menu"></ul>
+                                        <span class="form-control-clear glyphicon glyphicon-remove form-control-feedback hidden"></span>
+                                    </div>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" id="submitQuery2">Ask</button>
+                                    </span>
+                                </div>
+                                <em class="validation-message">Enter your query.</em>
+                                <label class="poweredbylabel">Powered by <a title="CoRover® Pvt. Ltd." href="https://corover.mobi/" target="_blank" style="text-decoration: none;"><em>CoRover</em><sup> ®</sup></a></label>
+                            </div>
+                        </form>
+            </div>
+            <div class="content-body">        
+                    <div id="chatbodywindow">
+                        <div class="cb-wrap">                    
+                            <div id="cb-body">
+                                <div class="apierror"><span>An error occurred. Please try again later.</span></div>                        
+                                <!-- Step 3 starts-->
+                                <div id="cb-step-three" class="stepWrap" style="display: block;">                                                                          
+                                    <div class="resultQueryWrap qaWrap">
+                                        <div class="query-results">
+                                            <h4 id="resultsoptiontitle" style="font-family:  Arial, Helvetica, sans-serif;font-size:14px; text-align:left;">Which question is more relevant to your query?</h4>
+                                            <h4 style="font-family:  Arial, Helvetica, sans-serif; padding-top: 5px; font-size:11px; text-align:center;">&nbsp;<a id="PNR_Enquiry" target="_blank" href="http://www.indianrail.gov.in/pnr_Enq.html"><font color="#003b88"><u>PNR Enquiry</u></font></a> &nbsp;|&nbsp;<a id="Train_Enquiry" target="_blank" href="https://enquiry.indianrail.gov.in/ntes/index.html"><font color="#003b88"><u>Train Enquiry</u> </font></a>&nbsp;|&nbsp;<a id="Seat_Availability" target="_blank" href="http://www.indianrail.gov.in/enquiry/SEAT/SeatAvailability.html?locale=en"><font color="#003b88"><u>Seat Availability</u></font></a>&nbsp;|&nbsp;<a target="_blank" id="Fare_Enquiry" href="http://www.indianrail.gov.in/enquiry/FARE/FareEnquiry.html?locale=en"><font color="#003b88"><u>Fare Enquiry</u></font> </a></h4>
+                                            <p id="nomatchingresults">
+                                                <i class="glyphicon glyphicon-exclamation-sign"></i>
+                                                <span class="message"></span>
+                                            </p>
+                                            <ul class="cb-query-types"></ul>
+                                            <!-- <h4 id="resultsoptiontitle" style="padding-top: 18px; font-size:11px; text-align:center;">&nbsp;<a target="_blank"  href="http://www.indianrail.gov.in/pnr_Enq.html">PNR Enquiry</a> &nbsp;|&nbsp;<a target="_blank"  href="https://enquiry.indianrail.gov.in/ntes/index.html">Train Enquiry </a>&nbsp;|&nbsp;<a target="_blank"  href="http://www.indianrail.gov.in/enquiry/SEAT/SeatAvailability.html?locale=en">Seat Availability</a>&nbsp;|&nbsp;<a target="_blank"  href=" http://www.indianrail.gov.in/enquiry/FARE/FareEnquiry.html?locale=en">Fair Availability</a></h4> -->
+                                        </div>                                
+                                    </div>
+                                    <div class="answerViewWrap qaWrap">
+                                        <p style="margin-bottom: 5px;">
+                                            <a class="back"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+                                        </p>
+                                        <div class="selected-query-wrap">
+                                            <p class="selected-query me">
+                                                <!-- <span class="left">
+                                                    <span class="glyphicon glyphicon-triangle-right"></span>
+                                                </span>     -->
+                                                <label class="selected-query-item"></label>
+                                            </p>
+                                        </div>
+                                        <div class="query-answer more"></div>  
+                                    </div>
+                                    <div class="answerViewWrap-found">
+                                        <p class="selected-query">
+                                            <!-- <span class="left">
+                                                <span class="glyphicon glyphicon-triangle-right"></span>
+                                            </span>     -->
+                                            <label class="selected-query-item"></label>
+                                        </p>
+                                     <p class="answer">
+                                     </p> 
+                                    </div>
+                                </div>
+        
+                                <div id="errorMessaging">
+                                    <div id="status404">
+                                        <p>
+                                            <span class="message"></span>
+                                        </p>
+                                    </div>                            
+                                    <div id="status451">
+                                        <p>
+                                            <span class="message"></span>
+                                        </p>
+                                        <!-- <p style="height: 135px;"><span class="icon-wrongwords"></span></p> -->
+                                    </div>
+                                    <div id="failedMessage">
+                                        <p class="message"></p>
+                                    </div>
+                                </div>
+                                <!--end errorMessaging-->
+                                <div id="feedback">
+                                    <div id="responsemessage">
+                                        <p>
+                                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                                            <span class="message"></span>
+                                        </p>
+                                    </div>
+            
+                                    <p class="forminline-label"><i>Is this helpful?</i></p>
+                                    
+                                    <div class="feedbackiconwrap">
+                                        <ul class="fb-icons-wrap">
+                                            <li>
+                                                <a class="fb-bad" id="fb-verybad"></a>
+                                            </li>
+                                            <li>
+                                                 <a class="fb-ok" id="fb-bad"></a>
+                                            </li>
+                                            <li>
+                                                <a class="fb-good" id="fb-good"></a>
+                                            </li>
+                                            <li>
+                                                <a class="fb-vgood" id="fb-vgood"></a>
+                                            </li>
+                                            <li>
+                                               <a class="fb-excellent" id="fb-excellent"></a>
+                                            </li>
+                                        </ul>
+                                    </div>                           
+                                    <form class="form-inline" id="feedbacdialog" autocomplete="off">                                
+                                        <div class="form-group">
+                                            <h3>
+                                                Feedback
+                                                <span>x</span>
+                                            </h3>
+                                            <ul id="feedbackoption">
+                                                <li>
+                                                    <span>
+                                                        <input class="fb-option" type="radio" value="Question doesn&#39;t seem to be relevant" name="feedback">
+                                                    </span>
+                                                    <label>Question doesn't seem to be relevant</label>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                        <input class="fb-option" type="radio" value="Answer provided is not useful/self-explanatory" name="feedback">
+                                                    </span>
+                                                    <label>Answer provided is not useful/self-explanatory</label>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                        <input class="fb-option" id="fb-others" value="others" type="radio" name="feedback">
+                                                    </span>
+                                                    <label>Others</label>
+                                                </li>
+                                                <li id="fb-others-form">
+                                                    <span><input type="text" class="form-control" id="feedbackmessage" placeholder="Enter your feedback"></span>        
+                                                </li>
+                                                <li class="fbothers-submit">                                         
+                                                    <a class="btn btn-large btn-primary" data-toggle="confirmation" data-btn-ok-label="Yes" data-btn-ok-class="btn-success" data-btn-ok-icon-class="material-icons" data-btn-ok-icon-content="check" data-btn-cancel-label="No" data-btn-cancel-class="btn-danger" data-btn-cancel-icon-class="material-icons" data-btn-cancel-icon-content="close" data-title="Are you sure?" data-content="You are giving feedback only for AskDISHA." data-original-title="" title="">
+                                                        Submit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+        
+                            </div>
+                            
+                        </div>
+                        <!-- <div id="ad-wrap" class="ad-banner">
+                            Advertisement
+                        </div> -->
+                        <div id="ad-outer-wrap" style="text-align:center;padding-top: 3px;">
+                           <div style="padding-bottom: 7px;"><a target="_blank" href="https://www.amazon.in/gp/goldbox?ref=nav_topnav_deals&amp;_encoding=UTF8&amp;tag=corover-irctc-21&amp;linkCode=ur2&amp;linkId=d95968a74071b153859ee58db890d508&amp;camp=3638&amp;creative=24630" rel="nofollow" style="text-decoration: none;padding-bottom: 5px;">Click here for <strong><img id="blink" src="./Deal_Header.png" style="height: 11px; opacity: 0.1;">  
+                            <!-- <img src="demo/res/amazon-logo.png" style="height: 14px;"> -->
+                        </strong></a></div>
+                            <!-- /21748009408/AskDisha_IP_300x250 -->
+                            <iframe id="ad_inner_frame" scrolling="no" src="./adchatbot.html" width="100%" height="255px" frameborder="0" style="
+                            margin-top: 0px;
+                        "></iframe>
+                        </div>
+                        <!--/ad outer wrap ends -->
+                        <div style="text-align: center;">
+                            <a target="_blank" href="https://games.gamezop.com/?id=qcs3sCSdd" rel="nofollow"><img src="./money.png" height="auto" width="180" alt=""></a>
+                            <br>
+                           <span class="pull-right" style="padding: 10px;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfRyPxRYOP_YexEKtilJ4BZfOSygPFdakj0K1cKOmwUZrmdGQ/viewform?c=0&amp;w=1" rel="nofollow" target="_blank" style="text-decoration:none;"><strong> Advertise with us!</strong></a></span> 
+                        </div>
+                    </div>        
+            </div>
+            <div id="footer-wrap" style="height: 52px; width: 100%; text-align: center;">
+                <iframe id="chatbotadwindow" class="adfrm" src="./adInnerPage320x50.html" width="320px" height="100%" frameborder="0" style="margin: auto;"></iframe>
+            </div>
+    </div> 
+
+    <!-- <div class="modal fade" id="overlay">
+        <div class="modal-dialog"style="top: 25%;padding: 10%;">
+          <div class="modal-content"style="
+          border-radius: 20px;
+      ">
+            <div class="modal-header"style="
+            border-radius: 20px;
+        ">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title"style="
+              text-align: center;
+          ">UPDATED  <img src="res/img/tick_green.png" width="30px" alt=""> </h4>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="./linkify.min.js"></script>
+    <script src="./linkify-jquery.min.js"></script>
+    <script src="./bootstrap-typeahead.js"></script>
+    <script src="./bootstrap-confirmation.min.js"></script>
+    <script src="./chatbot.js"></script>
+    <script src="./chbtwidget.js"></script>
+
+    <script async="" src="./f(6).txt"></script>
+    <!-- <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-8692878304946020",
+        enable_page_level_ads: true
+    });
+    </script> -->
+ <script>
+    // auto placeholder change start
+
+    setInterval(function(){blink()}, 700);
+    function blink() {
+        $("#blink").fadeTo(100, 0.1).fadeTo(200, 1.0);
+    }
+
+         // Add something to given element placeholder
+function addToPlaceholder(toAdd, el) {
+el.attr('placeholder', el.attr('placeholder') + toAdd);
+// Delay between symbols "typing" 
+return new Promise(resolve => setTimeout(resolve, 100));
+}
+
+// Cleare placeholder attribute in given element
+function clearPlaceholder(el) {
+el.attr("placeholder", "");
+}
+
+// Print one phrase
+function printPhrase(phrase, el) {
+return new Promise(resolve => {
+    // Clear placeholder before typing next phrase
+    clearPlaceholder(el);
+    let letters = phrase.split('');
+    // For each letter in phrase
+    letters.reduce(
+        (promise, letter, index) => promise.then(_ => {
+            // Resolve promise when all letters are typed
+            if (index === letters.length - 1) {
+                // Delay before start next phrase "typing"
+                setTimeout(resolve, 1000);
+            }
+            return addToPlaceholder(letter, el);
+        }),
+        Promise.resolve()
+    );
+});
+} 
+
+// Print given phrases to element
+function printPhrases(phrases, el) {
+// For each phrase
+// wait for phrase to be typed
+// before start typing next
+phrases.reduce(
+    (promise, phrase) => promise.then(_ => printPhrase(phrase, el)), 
+    Promise.resolve()
+);
+}
+
+// Start typing
+
+function run() {
+let phrases = [
+"Enter your query here",
+    "How to cancel e-Ticket?",
+    "How to check refund status?",
+    "Type keyword/short form for answer",
+    "Ex: cncl, cancel, Refnd, Refund, Ttkl",
+    "Enter your query here"
+];
+printPhrases(phrases, $('#queryInput2'));
+
+}
+run()
+// window.onload = function () {
+// if (localStorage.getItem("hasCodeRunBefore") === null) {
+//     $('#overlay').modal('show');
+// setTimeout(function() {
+// $('#overlay').modal('hide');
+// }, 600);
+//     localStorage.setItem("hasCodeRunBefore", true);
+// }
+// }
+//  auto Placeholder end 
+
+ </script>
+    
+  
+
+
+
+</body></html>

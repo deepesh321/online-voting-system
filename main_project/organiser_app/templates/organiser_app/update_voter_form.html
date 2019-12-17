@@ -1,0 +1,187 @@
+<!DOCTYPE  html>
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+<html lang="en">
+<head>
+    <title>Add Voter Form.</title>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            background-image:url({% static 'images/back.jpg' %});
+            background-repeat: no-repeat;
+            height:100%;
+            background-attachment:fixed;
+        }
+        .form-container{
+            box-shadow: 0px 0px 15px 8px white;
+            width: 50%;
+            height:540px;
+            margin-left: 360px;
+            margin-top:100px;
+            color: white;
+            padding: 15px;
+        }
+        .alert {
+            padding: 8px; text-align: center;
+            background-color: #f44336;
+            color: white;box-shadow: 0px 0px 8px 2px white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+        .alert.success {background-color: #4CAF50; }
+        .alert.alert-info {background-color: #2196F3;}
+
+        .closebtn {
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 35px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg bg-dark" >
+        <div class="navbar-collapse " id="navbarSupportedContent">
+            <img src="{% static "images/e-voting.png"%}" alt="evoting image" width="50" height="50">
+            <p style="color:white; font-size:25px;margin:5px"><a style="color:white;text-decoration: none" href="{% url 'evoting-home' %}" >E-Voting </a></p>
+        </div>
+
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="{% url 'organiser_app:mainpage' %}" style="font-size:25px">Mainpage</a>
+            </li>
+            <li>
+                <p class="text-white " style="font-size:25px;margin:5px">|</p>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="{% url 'organiser_app:select_region_page' %}" style="font-size:26px">Regions</a>
+            </li>
+            <li>
+                <p class="text-white " style="font-size:26px;margin:5px">|</p>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="{% url 'organiser_app:evoting-logout' %}" style="font-size:26px">Logout</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <div class="form-container">
+        <form method="post" action="" style="margin:30px;">
+            {% csrf_token %}
+            {% if message %}
+            <div class="alert success">
+                <span class="closebtn">&times;</span>
+                <strong>{{message}}</strong>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <strong>Edit Voter Details</strong>
+            </div>
+            {% endif %}<hr>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Enter Voter Id</label>
+                    {{ voter_form.voter_id|attr:"placeholder:Enter Voter Id" }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Enter Voter Name</label>
+                    {{ voter_form.voter_name|attr:"placeholder:Enter Voter Name" }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Enter valid Email</label>
+                    {{ voter_form.voter_email|attr:"placeholder:Enter Voter Email Id" }}
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Select Regions</label>
+                    {{ voter_form.voter_region }}
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Gender</label>
+                    {{voter_form.voter_gender}}
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Mobile Number</label>
+                    {{ voter_form.voter_phone|attr:"placeholder:Enter Mobile number" }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Aadhar Number</label>
+                    {{ voter_form.voter_aadhar|attr:"placeholder:Enter Aadhar number" }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Date of Birth</label>
+                    {{ voter_form.voter_dob }}
+                </div>
+                <div class="col-md-2">
+                    <label>Get Age</label>
+                    <input type="button" onclick="getAge()" value="Get Age">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Voter's Age</label>
+                    {{ voter_form.voter_age|attr:"placeholder:Enter voter age" }}
+                </div>
+                <div class="form-check col-md-2">
+                    <label> Status </label>
+                    <label class="form-check-label">
+                        Is Alive?
+                    </label>{{voter_form.isalive}}
+                </div>
+
+            </div>
+
+            <div style="text-align: center;padding: 20px;">
+                <button type="submit" class="btn btn-primary">Update Voter</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+<script>
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 500);
+      }
+    }
+</script>
+<script>
+    function getAge() {
+
+        var DOB = document.getElementById('date').value;
+        var today = new Date();
+        var birthDate = new Date(DOB);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age = age - 1;
+        }
+         document.getElementById('age').value = age;
+    }
+    </script>

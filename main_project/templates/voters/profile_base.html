@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<title>E-Voting Profile</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet">
+
+    <!-- Stylesheets -->
+
+    <link rel="stylesheet" href="{% static 'profile/styles/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'profile/styles/ionicons.css' %}">
+
+    <link rel="stylesheet" href="{% static 'profile/styles/profile/styles.css' %}">
+
+    <link rel="stylesheet" href="{% static 'profile/styles/responsive.css' %}">
+
+    <link rel="stylesheet" href="{% static 'base/style/styles.css' %}">
+
+
+    <!-- SCRIPTS -->
+
+    <script src="{% static 'profile/scripts/jquery-3.2.1.min.js' %}"></script>
+
+    <script src="{% static 'profile/scripts/tether.min.js' %}"></script>
+
+    <script src="{% static 'profile/scripts/bootstrap.js' %}"></script>
+
+    <script src="{% static 'profile/scripts/isotope.pkgd.min.js' %}"></script>
+
+    <script src="{% static 'profile/scripts/jquery.waypoints.min.js' %}"></script>
+
+    <script src="{% static 'profile/scripts/progressbar.min.js' %}"></script>
+
+    <script src="{% static 'profile/scripts/scripts.js' %}"></script>
+
+    <script src="{% static 'base/scripts/scripts.js' %}"></script>
+
+    <!-- ==========================Block Head================== -->
+    {% block head %}{% endblock head %}
+    <!-- =============================End====================== -->
+
+
+</head>
+<body background="{% static 'base/imgs/evoting-bg-02.jpg' %}">
+
+<!-- Page Overlay -->
+<div class="page-overlay"></div>
+<div class="page-overlay_2" style="display: none" id="page_overlay_2"></div>
+
+<!-- Navigation Bar -->
+<div class="container-fluid navigation-bar" id="navigation-bar">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="home_btn" href="{% url 'evoting-home' %}" style="float: left;">
+                <img src="{% static 'home/imgs/logo.png' %}">
+                <span>E-Voting</span>
+            </a>
+        </div>
+        <div class="col-sm-7"></div>
+        <div class="col-sm-2 mt-0">
+            <!-- Dropdown -->
+            <div class="dropdown" style="float: right">
+                <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    {% if user.is_authenticated %}
+                        {{ user.username }}
+                        <i class="material-icons" style="position: relative; top:5px">how_to_reg</i>
+                    {% else %}
+                        <i class="material-icons md-24" style="position: relative; top:4px">portrait</i>
+                    {% endif %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    {% if user.is_authenticated %}
+                        <a class="dropdown-item" href="{% url 'evoting-home' %}">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'evoting-user-profile' %}">Profile</a>
+                        <a class="dropdown-item" href="" data-toggle="modal" data-target="#exampleModalCenter" onclick="stop_scrolling()">
+                            Logout
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Feedback</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{% url 'evoting-home' %}">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Login</h6>
+                        <a class="dropdown-item" href="{% url 'evoting-voter-login' %}">Voter Login</a>
+                        <a class="dropdown-item" href="{% url 'evoting-organiser-login' %}">Organiser Login</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Register</h6>
+                        <a class="dropdown-item" href="{% url 'evoting-register' %}">Register</a>
+                        <div class="dropdown-divider"></div>
+                    {% endif %}
+                    <a class="dropdown-item" href="#">About</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" id="loading_bar"></div>
+    </div>
+</div>
+
+<!-- =================================================== -->
+
+<div class="go-back-btn">
+    <button onclick="window.history.back()">
+        &#10096;
+    </button>
+</div>
+
+<!-- =========================Block Body ============================ -->
+{% block body %}{% endblock body %}
+<!-- ============================End================================= -->
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-4 footer-content" style="background-color: #008B8B;">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+
+        <!-- Footer links -->
+        <div class="row text-center text-md-left mt-3 pb-3 footer_links">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold" style="font-size: 25px; color: khaki">E-VOTING</h6>
+                <p style="color: antiquewhite; font-weight: bold">We make you vote in a simpler and secured way.</p>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold" style="color: purple">User Profile</h6>
+                <hr class="mb-4 mt-0 d-inline-block" style="width: 60px;">
+                <p>
+                    <a href="{% url 'evoting-home' %}" class="font-lite-red font-weight-normal">Home</a>
+                </p>
+                {% if user.is_authenticated %}
+                    <p>
+                        <a href="{% url 'evoting-user-profile' %}" class="font-lite-red">Profile</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'evoting-logout' %}" class="font-lite-red">Logout</a>
+                    </p>
+                {% else %}
+                    <p>
+                        <a href="{% url 'evoting-voter-login' %}" class="font-lite-red">Voter Login</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'evoting-organiser-login' %}" class="font-lite-red">Organiser Login</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'evoting-register' %}" class="font-lite-red">Register</a>
+                    </p>
+                {% endif %}
+            </div>
+            <!-- Grid column -->
+
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold" style="color: purple">About Us</h6>
+                <hr class="mb-4 mt-0 d-inline-block" style="width: 60px;">
+                <p>
+                    <a href="">About Us</a>
+                </p>
+                <p>
+                    <a href="{% url 'charts:feedback' %}">Feedback</a>
+                </p>
+                <p>
+                    <a href="{% url 'charts:report' %}">Report</a>
+                </p>
+            </div>
+
+            <!-- Grid column -->
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold" style="color: purple">Contact</h6>
+                <hr class="mb-4 mt-0 d-inline-block" style="width: 60px;">
+                <p>
+                    <i class="fa fa-home" style="color: #101112"></i>
+                    <span class="font-lite-red ml-3">Sri City, SC 10012, IN</span>
+                </p>
+                <p>
+                    <i style="color: #101112" class="fa fa-envelope" ></i>
+                    <span class="font-lite-red ml-3" style="font-size: 15px">johns69mith69@gmail.com</span>
+                </p>
+                <p class="font-lite-red">
+                    <i style="color: #101112" class="fa fa-phone mr-3"></i> +91 9182510981
+                </p>
+                <p class="font-lite-red">
+                    <i style="color: #101112" class="fa fa-print mr-3"></i> +91 9182510981
+                </p>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Footer links -->
+
+        <hr>
+
+        <!-- Grid row -->
+        <div class="row d-flex align-items-center">
+
+            <!-- Grid column -->
+            <div class="col-md-7 col-lg-8">
+
+                <!--Copyright-->
+                <p class="text-center text-md-left font-lite-red">© 2018 Copyright:
+                    <a href="{% url 'evoting-home' %}" class="footer-copyright">
+                        <strong> e-voting.com</strong>
+                    </a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-5 col-lg-4 ml-lg-0">
+
+                <!-- Social buttons -->
+                <div class="text-center text-md-right">
+                    <ul class="list-unstyled list-inline social">
+                        <li class="list-inline-item facebook">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.facebook.com/">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item instagram">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.instagram.com/">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item linked_in">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.linkedin.com/">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item twitter">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.twitter.com/">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+</footer>
+
+
+<!-- ====================Logout Modal ============================================-->
+<div class="modal fade logout_modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content logout_modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title color-white" id="exampleModalLongTitle">Confirmation</h5>
+                <button type="button" class="close color-white" data-dismiss="modal" aria-label="Close" onclick="start_scrolling()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body color-white" style="font-family: 'Microsoft YaHei Light'; font-weight: bold">
+                Are you sure, You want to logout?
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'evoting-logout' %}">
+                    <button type="button" class="btn btn-danger">Logout</button>
+                </a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="start_scrolling()">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =================================================== -->
+
+<!-- =================================================== -->
+{#=====================Function Calls==================#}
+
+<script>
+    load_page();
+
+    window.onscroll = function(){
+        animate_navigation_bar();
+    };
+
+    $(function () {
+        $(".dropdown-toggle").click(function () {
+            $(".dropdown-menu").slideToggle()
+        });
+    });
+
+    $(document).click(function (e) {
+        e.stopPropagation();
+        var container = $(".dropdown");
+
+        //check if the clicked area is dropDown or not
+        if (container.has(e.target).length === 0) {
+            $('.dropdown-menu').hide();
+        }
+    });
+    
+</script>
+
+</body>
+</html>

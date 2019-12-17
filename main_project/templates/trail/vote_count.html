@@ -1,0 +1,22 @@
+{% extends 'voters/base.html' %}
+
+{% block body %}
+<br>
+<br>
+{% if messages %}
+        {% for message in messages %}
+            {%if "vote" in message.tags %}
+            <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+                        border: 1px solid #008B8B; border-radius: 4px; background: transparent">
+                {{ message }}
+            </div>
+            {% endif %}
+            {%if "result" in message.tags %}
+            <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+                        border: 1px solid #008B8B; border-radius: 4px; background: transparent">{{ message }} </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock body %}

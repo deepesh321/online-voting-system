@@ -1,0 +1,172 @@
+<!doctype html>
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+      <style>
+         a:hover {
+         background: #263238;
+         }
+         .input100{
+         border-radius:5px;
+         padding:3px;
+         background-color:#e0e0e0;
+         border:none;
+         width:275px;
+         outline:none;
+         }
+         .bord{
+         border:1px solid #263238;
+         }
+         .form-container{
+         -webkit-box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
+         -moz-box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
+         box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
+         width:352px;
+         height:630px;
+         margin-left: -30px;
+         margin-top:20px;
+         }
+      </style>
+      <title>organiser_region</title>
+      </head>
+
+
+   <body style="background-image:url({% static 'images/back.jpg' %});background-repeat: no-repeat;height:100%;background-attachment:fixed" >
+      <nav class="navbar fixed-top container-fluid navbar-expand-lg navbar-light bg-dark" style="background-color:#008B8B" >
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <img src="{% static "images/e-voting.png"%}" alt="evoting image" width="50" height="50">
+            <p style="color:white; font-size:30px;margin:5px"><a style="color:white;text-decoration: none" href="{% url 'evoting-home' %}" >E-Voting </a></p>
+         </div>
+         <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item active">
+               <a class="nav-link text-white" href="{% url 'organiser_app:mainpage' %}" style="font-size:26px">Mainpage <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+               <p class="text-white " style="font-size:26px;margin:5px">|</p>
+            </li>
+            <li class="nav-item active">
+               <a class="nav-link text-white" href="{% url 'organiser_app:evoting-logout'%}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
+            </li>
+         </ul>
+      </nav>
+
+
+      <div class="container-fluid h-100 text-dark " style="margin-top:100px">
+         <div class="row justify-content-center align-items-center h-100">
+            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+               <form action={% url 'organiser_app:addelection'%} onsubmit="Validationform()" method="post" class="form-container" >
+               <div style="margin-left:40px;margin-top:30px;">
+                  {% csrf_token %}
+                  <div class="form-group row">
+                     <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:18px;color:white;margin:5px">Election Type</label>
+                  </div>
+                  <div class="form-group row" style="margin-top:-32px">
+                     <div class="col-sm-12">
+                        {{ addelection_form.election_type |add_class:"input100"|attr:"id=ElectionType"|attr:"onchange:myFunction()"}}
+                     </div>
+                  </div>
+                  <div class="form-group row" style="margin-top:-10px">
+                     <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:18px;color:white;margin:5px">Election Year</label>
+                  </div>
+                  <div class="form-group row" style="margin-top:-32px">
+                     <div class="col-sm-12">
+                        {{ addelection_form.election_year|add_class:"input100"}}
+                     </div>
+                  </div>
+                  <div class="form-group row" style="margin-top:-10px">
+                     <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:18px;color:white;margin:5px ">Date of Start</label>
+                  </div>
+                  <div class="form-group row" style="margin-top:-32px">
+                     <div class="col-sm-12">
+                        {{ addelection_form.date_of_start|add_class:"input100"|add_class:"bord"|attr:"id=dateofstart" }}
+                     </div>
+                  </div>
+                  <div class="form-group row"style="margin-top:-10px">
+                     <legend class="col-form-label col-sm-12 pt-0" style="font-size:18px;color:white;margin:5px" >Date of End</legend>
+                  </div >
+                  <div class="form-group row" style="margin-top:-32px">
+                     <div class="col-sm-12">
+                        {{addelection_form.date_of_end|add_class:"input100"|add_class:"bord"|attr:"id=dateofend" }}
+                     </div>
+                  </div>
+                  <div class="form-group row" style="margin-top:-10px">
+                     <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:18px;color:white;margin:5px ">Add Candidates</label>
+                  </div>
+                  <div class="form-group row" style="margin-top:-32px">
+                     <div class="col-sm-12">
+                        {{ addelection_form.candidates|add_class:"input100" }}
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:18px;color:white;">Select Region</label>
+                  </div>
+                  <div class="form-group row" style="margin-top:-28px">
+                     <div class="col-sm-12">
+                        <select name="statelist"  id="region" class="input100">
+                           <option value="Bihar">Bihar</option>
+                           <option value="AndhraPradesh">AndhraPradesh</option>
+                           <option value="Tamilnadu">Tamilnadu</option>
+                           <option value="karnataka">karnataka</option>
+                           <option value="UttarPradesh">UttarPradesh</option>
+                           <option value="Assam">Assam</option>
+                           <option value="WestBengal">WestBengal</option>
+                           <option value="MadhyaPradesh">MadhyaPradesh</option>
+                           <option value="Haryana">Haryana</option>
+                           <option value="Kerela">Kerela</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <div class="col-sm-12">
+                        <button type="submit" class="btn btn-danger" style="margin-left:5px;border-radius:5px;margin-top:5px;width:100px">Submit</button>
+                     </div>
+                  </div>
+               </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+
+      <script type="text/javascript">
+         function myFunction() {
+           var d = document.getElementById("ElectionType").value;
+             if( d == 'P' ){
+             document.getElementById("region").disabled = true;
+
+           }
+             else if( d == 'A' ){
+             document.getElementById("region").disabled = false;
+
+           }
+         }
+
+      </script>
+
+    
+
+   </body>
+</html>

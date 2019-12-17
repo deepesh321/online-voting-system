@@ -1,0 +1,152 @@
+{% extends 'voters/base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mypage</title>
+    <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+{% endblock head %}
+
+{% block body %}
+<!---top button-->
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up "></span></button>
+   <div id="navbar">
+
+   </div>
+<!--timer-->
+    <div class="background">
+    <center>
+	<h1 style="font-family: 'Britannic Bold'">THE ELECTIONS WILL START IN </h1>
+	<div id="clockdiv">
+	  <div>
+		<span id="days"></span>
+		<div class="smalltext">Days</div>
+	  </div>
+	  <div>
+		<span id="hours"></span>
+		<div class="smalltext">Hours</div>
+	  </div>
+	  <div>
+		<span id="minutes"></span>
+		<div class="smalltext">Minutes</div>
+	  </div>
+	  <div>
+		<span id="seconds"></span>
+		<div class="smalltext">Seconds</div>
+	  </div>
+	</div>
+
+        <div class="container">
+        <h1 style=" font-family: 'Britannic Bold'">Welcome to region <b style="color: red;">{{ region }}</b></h1>
+
+        <h3 style="font-family: 'Britannic Bold'">Below mentioned is the list of candidates in the region {{ region }}</h3>
+    </div>
+</center>
+
+    </div>
+
+
+    <br>
+<!--- number of candidates available-->
+<div class="clipped">
+    <table>
+    <tr>
+              {% for i in candidates_new %}
+                  <td style="padding: 20px;">
+                   <div class="card">
+                    <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
+                    <h1></h1>
+                    <h4> <b style="color:black">i am {{ i.0 }}</b></h4>
+                        <form action="{% url 'candidate_details' i.1 %}" method="POST">
+                        {%  csrf_token %}
+                    <button class="button1"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button>
+                        </form></div>
+                  </td>
+                {% endfor %}
+    </tr>
+    </table>
+</div>
+       <br>
+
+
+<!---- javascript code---->
+<script>
+
+    function date_time() {
+        var date=new Date();
+        var new_date=new Date("Dec 7 2018 16:40");
+        var d=new_date.getDate() - date.getDate();
+        var h=new_date.getHours() - date.getHours();
+        var m=new_date.getMinutes() - date.getMinutes();
+        var s=new_date.getSeconds() - date.getSeconds();
+
+        if(d<0)
+            document.getElementById("days").innerHTML=d*-1;
+        else
+            document.getElementById("days").innerHTML=d;
+        if(h<0)
+            document.getElementById("hours").innerHTML=h*-1;
+        else
+            document.getElementById("hours").innerHTML=h;
+        if(m<0)
+            document.getElementById("minutes").innerHTML=m*-1;
+        else
+            document.getElementById("minutes").innerHTML=m
+        if(s<0)
+            document.getElementById("seconds").innerHTML=s*-1;
+        else
+            document.getElementById("seconds").innerHTML=s;
+
+        setInterval(function(){
+            currentnumber = Number(document.getElementById('seconds').innerHTML);
+            currentmin = Number(document.getElementById('minutes').innerHTML);
+            currenthours = Number(document.getElementById('hours').innerHTML);
+            currentdays = Number(document.getElementById('days').innerHTML);
+            currentseconds=currentnumber-1;
+            if(currentseconds<0 & currentmin>0) {
+                currentseconds = 59;
+                currentmin = currentmin - 1;
+                if (currentmin < 0 & currenthours > 0) {
+                    currentmin = 59;
+                    currenthours = currenthours - 1;
+                    if (currenthours < 0 & currentdays > 0) {
+                        currenthours = 23;
+                        currentdays = currentdays - 1;
+                        if (currentdays < 0) {
+                            currentdays = 0;
+                            currenthours = 0;
+                            currentmin = 0;
+                            currentseconds = 0;
+                        }
+                    }
+                }
+            }
+            document.getElementById('seconds').innerHTML=currentseconds;
+            document.getElementById('minutes').innerHTML=currentmin;
+            document.getElementById('hours').innerHTML=currenthours;
+            document.getElementById('days').innerHTML=currentdays;
+ },1000);
+    }
+
+    date_time()
+    window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+{% endblock body %}

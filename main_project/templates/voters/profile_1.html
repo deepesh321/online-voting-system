@@ -1,0 +1,31 @@
+{% extends 'voters/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>E-Voting Profile</title>
+{% endblock head %}
+
+{% block body %}
+        <div class="container mt-5" id="profile_card">
+            <div class="row profile_card" style="padding: 5%">
+                <div class="col-md-4">
+                    <img src="{% static 'profile/images/Telangana.png' %}" id="region_img">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <table style="width: 100%">
+                            <tr style="height: 200px">
+
+                            </tr>
+                            <tr>
+                                <td style="position: relative; width: 30%;">
+                                    <p id="username">{{ username }}</p><br>
+                                    <p>{{ region }}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock body %}
